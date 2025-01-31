@@ -37,4 +37,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'user_skill');
+    }
+
+    public function addSkills(array $skillIds)
+    {
+        // Sync the given skills with the user
+        $this->skills()->sync($skillIds);
+    }
+
 }
