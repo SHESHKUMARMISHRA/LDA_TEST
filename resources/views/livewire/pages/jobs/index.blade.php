@@ -45,13 +45,13 @@
                                     </td>
                                     <td class="px-4 py-3">
                                         <div class="flex items-center flex-wrap gap-2">
-                                            @foreach ($job['extra'] as $extra)
+                                             @foreach ($job['extra'] as $extra)
                                                 <span class="inline-block bg-amber-100 rounded-full px-2 py-0.5 text-xs font-medium text-amber-800">{{ $extra }}</span>
-                                            @endforeach
+                                            @endforeach                                           
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 flex items-center justify-end">
-                                        <a href="#" class="text-sm px-3 py-1.5 rounded hover:bg-slate-100 transition-colors text-red-500">Delete</a>
+                                        <a href="#"  wire:click="deleteJob({{ $job['id'] }})" class="text-sm px-3 py-1.5 rounded hover:bg-slate-100 transition-colors text-red-500">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
