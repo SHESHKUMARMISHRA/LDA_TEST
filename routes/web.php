@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Job;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -15,7 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    // Fetch the jobs with associated skills
+    $jobs = Job::with('skills')->get();
+    return Inertia::render('Dashboard', [
+        'jobs' => $jobs,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
