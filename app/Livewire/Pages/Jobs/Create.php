@@ -5,12 +5,13 @@ namespace App\Livewire\Pages\Jobs;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Job;
+use App\Models\Skill;
 
 class Create extends Component
 {
     use WithFileUploads;
 
-    public $title, $description, $experience, $salary, $location, $extra_info, $company_name, $company_logo;
+    public $title, $description, $experience, $salary, $location, $extra_info, $company_name, $company_logo,$skills;
 
     protected $rules = [
         'title' => 'required|string|max:255',
@@ -20,6 +21,7 @@ class Create extends Component
         'location' => 'required',
         'company_name' => 'required',
         'company_logo' => 'nullable|image|max:2048',
+        'skills' => 'required|array',
     ];
 
     public function save()
@@ -37,6 +39,7 @@ class Create extends Component
             'extra_info' => $this->extra_info,
             'company_name' => $this->company_name,
             'company_logo' => $logoPath,
+            'skills' => json_encode($this->skills), // Store as JSON
         ]);
 
         session()->flash('message', 'Job posted successfully!');
@@ -45,6 +48,8 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.pages.jobs.create');
+        return view('livewire.pages.jobs.create', [
+            'allSkills' => Skill::all(), // Fetch skills for selection
+        ]);
     }
 }

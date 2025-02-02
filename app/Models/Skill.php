@@ -23,9 +23,4 @@ class Skill extends Model
     {
         return $this->belongsToMany(User::class, 'user_skill');
     }
-
-    public function jobs()
-    {
-        return $this->belongsToMany(Job::class, 'job_skill'); // Specify the pivot table
-    }
 }

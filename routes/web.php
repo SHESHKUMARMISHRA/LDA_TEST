@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Job;
+use App\Models\Skill;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,8 +17,21 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    // Fetch the jobs with associated skills
-    $jobs = Job::with('skills')->get();
+    // Fetch jobs and load skills
+    $jobs = Job::with('extra')->get()->map(function ($job) {
+        // Decode the JSON string stored in the skills column
+        $skillIds = json_decode($job->skills, true);
+
+        // If skill IDs exist, fetch skill names from the Skill model
+        if (is_array($skillIds)) {
+            $skills = Skill::whereIn('id', $skillIds)->pluck('name')->toArray();
+            $job->skills = $skills;
+        } else {
+            $job->skills = [];
+        }
+
+        return $job;
+    });
     return Inertia::render('Dashboard', [
         'jobs' => $jobs,
     ]);

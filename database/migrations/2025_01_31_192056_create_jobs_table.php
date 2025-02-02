@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('extra_info')->nullable();
             $table->string('company_name');
             $table->string('company_logo')->nullable();
+            $table->json('skills')->nullable(); // Store skills as JSON array
             $table->timestamps();
         });
     }

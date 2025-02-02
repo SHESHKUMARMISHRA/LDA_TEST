@@ -46,7 +46,22 @@
                     <input type="file" wire:model="company_logo" class="border rounded w-full p-2 mt-1">
 
                     <div wire:loading wire:target="company_logo">Uploading...</div>
+                    <br>
+                    <!-- Skills Selection -->
+               
+                    
+
+                    <label class="block text-sm font-medium text-gray-700">Select Skills</label>
+                    <select wire:model="skills" multiple class="border rounded w-full p-2 mt-1">
+                        @foreach($allSkills as $skill)
+                        <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <p class="text-sm text-gray-500 mt-2">Hold down the Ctrl (Windows) or Command (Mac) key to select
+                        multiple options.</p>
                 </div>
+
             </div>
 
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded">Save</button>

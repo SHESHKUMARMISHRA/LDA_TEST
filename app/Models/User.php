@@ -35,18 +35,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'skills' => 'array', // Store skills as JSON array
         ];
     }
 
-    public function skills()
+    public function getSkills()
     {
-        return $this->belongsToMany(Skill::class, 'user_skill');
+        return Skill::whereIn('id', $this->skills)->get();
     }
 
     public function addSkills(array $skillIds)
     {
-        // Sync the given skills with the user
-        $this->skills()->sync($skillIds);
+        $this->update(['skills' => $skillIds]); // Store as JSON array
     }
-
 }

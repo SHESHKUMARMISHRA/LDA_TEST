@@ -16,7 +16,7 @@ interface Job {
   experience: string;
   salary: string;
   location: string;
-  //skills: string[]; // Assuming skills is an array of strings
+  skills: string[]; // Assuming skills is an array of strings
 }
 
 // Use ref to store the jobs array with the Job type
@@ -68,14 +68,14 @@ onMounted(() => {
             </div>
 
             <!-- Skills List -->
-            <!--div class="px-4 py-3 bg-gray-50 text-left">
+            <div class="px-4 py-3 bg-gray-50 text-left">
               <span class="text-sm font-medium text-gray-700">Skills:</span>
               <div class="flex flex-wrap gap-2 mt-2">
                 <span v-for="skill in job.skills" :key="skill" class="bg-gray-200 text-gray-800 text-xs px-3 py-1 rounded-full">
                   {{ skill }}
                 </span>
               </div>
-            </div-->
+            </div>
           </div>
         </div>
       </div>
