@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('skills', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('slug')->nullable()->after('name'); 
-            $table->timestamps();
+            $table->id(); // Auto-increment primary key
+            $table->string('name'); // Skill name
+            $table->string('slug')->nullable(); // Slug column (nullable)
+            $table->timestamps(); // Created_at and updated_at timestamps
         });
     }
 

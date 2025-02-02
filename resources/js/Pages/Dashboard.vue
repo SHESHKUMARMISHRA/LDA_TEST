@@ -11,7 +11,7 @@ interface Job {
   title: string;
   company_name: string;
   company_logo: string;
-  job_type: string;
+  extra_info: string[];
   description: string;
   experience: string;
   salary: string;
@@ -47,14 +47,16 @@ onMounted(() => {
               <div class="flex justify-between items-center">
                 <!-- Company Info -->
                 <div class="flex items-center space-x-2">
-                  <img :src="job.company_logo" alt="Company Logo" class="h-10 w-10 object-cover rounded-full" />
+                  <img :src="'/storage/' + job.company_logo" alt="Company Logo" class="h-10 w-10 object-cover rounded-full" />
                   <div>
                     <h3 class="text-xl font-semibold text-gray-800">{{ job.company_name }}</h3>
-                    <p class="text-sm text-gray-500">{{ job.job_type }}</p>
+                    <p class="text-sm text-gray-500">
+                      <span v-for="(info, index) in job.extra_info" :key="index" class="block">
+                        {{ info }}
+                      </span>
+                    </p>
                   </div>
                 </div>
-                <!-- Job Type -->
-                <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-full">{{ job.job_type }}</span>
               </div>
 
               <h4 class="mt-3 text-xl font-semibold text-gray-900">{{ job.title }}</h4>

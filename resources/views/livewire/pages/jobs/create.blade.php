@@ -10,7 +10,7 @@
         </div>
         @endif
 
-        <form wire:submit.prevent="save">
+        <form wire:submit.prevent="save" enctype="multipart/form-data">
             <div class="grid grid-cols-2 gap-4">
                 <!-- Job Details -->
                 <div class="bg-white shadow-md rounded-lg p-4">

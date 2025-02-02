@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     // Fetch jobs and load skills
-    $jobs = Job::with('extra')->get()->map(function ($job) {
+    $jobs = Job::get()->map(function ($job) {
         // Decode the JSON string stored in the skills column
         $skillIds = json_decode($job->skills, true);
 
@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
         } else {
             $job->skills = [];
         }
-
+      
         return $job;
     });
     return Inertia::render('Dashboard', [

@@ -36,7 +36,7 @@ class Create extends Component
             'experience' => $this->experience,
             'salary' => $this->salary,
             'location' => $this->location,
-            'extra_info' => $this->extra_info,
+            'extra_info' => [$this->extra_info], // Ensure it's a JSON array
             'company_name' => $this->company_name,
             'company_logo' => $logoPath,
             'skills' => json_encode($this->skills), // Store as JSON

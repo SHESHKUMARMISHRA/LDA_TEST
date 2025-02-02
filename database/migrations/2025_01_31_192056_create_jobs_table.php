@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('experience');
             $table->string('salary');
             $table->string('location');
-            $table->string('extra_info')->nullable();
+            $table->json('extra_info')->nullable();
             $table->string('company_name');
             $table->string('company_logo')->nullable();
             $table->json('skills')->nullable(); // Store skills as JSON array
